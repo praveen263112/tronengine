@@ -62,7 +62,7 @@ const transferToken = async(req,res,next) => {
               shouldPollResponse: true
           };
 
-      const txHash = await transferContract.transferToken(address,parseInt(amount),1000015).send().
+      const txHash = await transferContract.transferToken(address,parseInt(amount),config.tokenId).send().
                   catch(error => {
                     winston.error("Token transfer failed from contract");
                     next (new Error("Token transfer failed from contract"));
