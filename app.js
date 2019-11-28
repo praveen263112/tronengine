@@ -39,4 +39,4 @@ app.use((error, req, res, next) => {
 
 
 //Starting server
-app.listen(config.port);
+app.listen(config.port,config.hostname);

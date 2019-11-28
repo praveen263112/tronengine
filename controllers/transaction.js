@@ -42,7 +42,7 @@ const transferToken = async(req,res,next) => {
     //Winston Logging
     winston.info("Transfer Contract : "+ transferContract);
 
-    let contractTokenBalance = await transferContract.getTokenBalance(config.contractAddress).call()
+    let contractTokenBalance = await transferContract.getTokenBalance(config.contractAddress,config.tokenId).call()
                               .catch(error =>{
                                 winston.error("Cannot fetch contract token Balance");
                                 next(new Error("Cannot fetch contract token Balance"));
@@ -82,7 +82,7 @@ const transferToken = async(req,res,next) => {
       flag = false;
 
       //Fetching client address balance
-      let clientTokenBalance = await transferContract.getTokenBalance(config.clientAddress).call()
+      let clientTokenBalance = await transferContract.getTokenBalance(config.clientAddress,config.tokenId).call()
                                 .catch(error =>{
                                   winston.error("Cannot fetch client token Balance");
                                   next(new Error("Cannot fetch client token Balance"));
