@@ -79,7 +79,7 @@ const transferToken = async(req,res,next) => {
 
     }else{
 
-      flag = false;
+
 
       //Fetching client address balance
       let clientTokenBalance = await transferContract.getTokenBalance(config.clientAddress,config.tokenId).call()
@@ -92,6 +92,7 @@ const transferToken = async(req,res,next) => {
       winston.info("Client Token Balance : "+ clientTokenBalance);
 
       if(clientTokenBalance > amount){
+        flag = false;
 
         let args = {
                 callValue:0,
@@ -122,7 +123,7 @@ const transferToken = async(req,res,next) => {
       winston.error("Insufficient Funds");
       res.status(200).json({
         'success' :false,
-        'result'  :"Insufficient funds"
+        'error'  :"Insufficient funds"
       });
     }
 
